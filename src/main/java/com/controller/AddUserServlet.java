@@ -1,6 +1,6 @@
 package com.controller;
 
-import com.dao.UserDao;
+import com.dao.RegisterUserDao;
 import com.model.Role;
 import com.model.User;
 import jakarta.servlet.ServletException;
@@ -36,7 +36,7 @@ public class AddUserServlet extends HttpServlet {
             user.setMotDePasse(motDePasse);
             user.setRole(role);
 
-            UserDao userDao = new UserDao();
+            RegisterUserDao userDao = new RegisterUserDao();
             userDao.addUser(user);
 
             response.sendRedirect("home.jsp");

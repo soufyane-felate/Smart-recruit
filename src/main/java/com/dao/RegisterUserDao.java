@@ -1,12 +1,11 @@
 package com.dao;
 
-import com.model.Role;
 import com.model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class UserDao {
+public class RegisterUserDao {
     public void addUser(User user) throws SQLException {
         String query = "INSERT INTO Utilisateur(email, motDePasse, role) VALUES (?, ?, ?)";
 
@@ -21,5 +20,8 @@ public class UserDao {
 
         }
     }
+
 }
+
+
 
