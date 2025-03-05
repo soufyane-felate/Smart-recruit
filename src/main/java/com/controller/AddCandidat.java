@@ -31,3 +31,12 @@ public class AddCandidat extends HttpServlet {
         response.sendRedirect("listCandidat.jsp");
     }
 }
+
+
+
+
+
+
+
+
+

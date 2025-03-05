@@ -12,7 +12,7 @@ public class CandidatDao {
             String sql = "insert into Candidat(nome,email) values(?,?)";
             try(Connection con = DBConnection.getConnection();
             PreparedStatement prstm = con.prepareStatement(sql);) {
-                prstm.setString(1,candidat.getNome());
+                  prstm.setString(1,candidat.getNom());
                 prstm.setString(2,candidat.getEmail());
                 prstm.executeUpdate();
 

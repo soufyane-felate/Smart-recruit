@@ -2,14 +2,20 @@ package com.model;
 
 public class User {
     private int id;
-    private String nom;
     private String email;
     private String motDePasse;
     private Role role;
 
-    public User(int id, String nom, String email, String motDePasse, Role role) {
+    public User() {}
+
+    public User(String email, String motDePasse, Role role) {
+        this.email = email;
+        this.motDePasse = motDePasse;
+        this.role = role;
+    }
+
+    public User(int id, String email, String motDePasse, Role role) {
         this.id = id;
-        this.nom = nom;
         this.email = email;
         this.motDePasse = motDePasse;
         this.role = role;
@@ -21,14 +27,6 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
     }
 
     public String getEmail() {
@@ -59,9 +57,8 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", nom='" + nom + '\'' +
                 ", email='" + email + '\'' +
-                ", motDePasse='" + motDePasse + '\'' +
+                ", motDePasse='[PROTECTED]'" +
                 ", role=" + role +
                 '}';
     }
