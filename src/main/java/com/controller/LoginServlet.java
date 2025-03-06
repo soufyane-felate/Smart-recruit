@@ -2,6 +2,7 @@ package com.controller;
 
 
 import com.dao.LoginDao;
+import com.model.Role;
 import com.model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -22,14 +23,18 @@ public class LoginServlet extends HttpServlet {
 
         LoginDao loginDao = new LoginDao();
         User user = loginDao.authenticateUser(email, password, role);
-
-        if (user != null) {
+        if (user != null && email.equals(user.getEmail()) && password.equals(user.getMotDePasse())) {
             HttpSession session = request.getSession();
-            session.setAttribute("user", user);
-            response.sendRedirect("home.jsp");
+            session.setAttribute("role", user);
+            if (role.equals("CANDIDAT")) {
+                response.sendRedirect("home.jsp");
+            } else {
+                response.sendRedirect("dashboardRec.jsp");
+            }
         } else {
             request.setAttribute("errorMessage", "Identifiants incorrects !");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
 }
+
