@@ -13,21 +13,21 @@
     <form id="registrationForm" action="AddUser" method="post" class="needs-validation" novalidate>
 
         <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
+            <label for="name" class="form-label">Nom</label>
             <input type="text" class="form-control" id="name" name="nom" placeholder="Enter your name" required>
-            <div class="invalid-feedback">Please provide your name.</div>
+            <div class="invalid-feedback">Veuillez indiquer votre nom.</div>
         </div>
 
         <div class="mb-3">
-            <label for="email" class="form-label">Email Address</label>
+            <label for="email" class="form-label">Address Email </label>
             <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
-            <div class="invalid-feedback">Please enter a valid email address.</div>
+            <div class="invalid-feedback">S'il vous plait, mettez une adresse email valide.</div>
         </div>
 
         <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
+            <label for="password" class="form-label">Mot de passe</label>
             <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required minlength="6">
-            <div class="invalid-feedback">Password must be at least 6 characters long.</div>
+            <div class="invalid-feedback">Le mot de passe doit comporter au moins 6 caracteres.</div>
         </div>
 
         <div class="mb-3">
@@ -45,7 +45,7 @@
 
         <div class="d-flex justify-content-between align-items-center">
             <button type="submit" class="btn btn-primary">Register</button>
-            <a href="login.jsp" class="text-decoration-none">I have an account</a>
+            <a href="login.jsp" class="text-decoration-none">J'ai un compte</a>
         </div>
     </form>
 </div>
