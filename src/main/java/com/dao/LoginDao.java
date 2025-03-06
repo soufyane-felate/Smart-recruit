@@ -3,15 +3,12 @@ package com.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import com.model.Role;
 import com.model.User;
-
 
 public class LoginDao {
     public User authenticateUser(String email, String password, String role) {
         User user = null;
-
         try (Connection connection = DBConnection.getConnection()) {
             String sql = "SELECT * FROM Utilisateur WHERE email = ? AND motDePasse = ? AND role = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -29,8 +26,6 @@ public class LoginDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return user;
     }
 }
-
