@@ -22,8 +22,8 @@ public class LoginDao {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 user = new User();
-                user.setId(resultSet.getInt("id"));
                 user.setEmail(resultSet.getString("email"));
+                user.setMotDePasse(resultSet.getString("motDePasse"));
                 user.setRole(Role.valueOf(resultSet.getString("role")));
             }
         } catch (Exception e) {
@@ -33,3 +33,4 @@ public class LoginDao {
         return user;
     }
 }
+

@@ -8,6 +8,6 @@ public class AddOfferServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response){
         String title = request.getParameter("jobTitle");
         String description = request.getParameter("jobDescription");
-        
+
     }
 }
