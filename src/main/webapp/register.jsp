@@ -1,69 +1,70 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.model.Role" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Registration</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
 </head>
 <body>
-<div class="container mt-5">
-    <form id="myForm" action="AddUser" method="post">
-        <div class="form-group">
-            <label for="nom">nom</label>
-            <input type="text" class="form-control" id="nom" name="nom"
-                   placeholder="Enter your name" required>
+<div class="container py-5">
+    <h1 class="text-center mb-4">User Registration</h1>
+    <form id="registrationForm" action="AddUser" method="post" class="needs-validation" novalidate>
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="nom" placeholder="Enter your name" required>
+            <div class="invalid-feedback">Please provide your name.</div>
         </div>
-        <div class="form-group">
-            <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" name="email"
-                   placeholder="Enter your email" required>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+            <div class="invalid-feedback">Please enter a valid email address.</div>
         </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password"
-                   placeholder="Enter your password" required>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required minlength="6">
+            <div class="invalid-feedback">Password must be at least 6 characters long.</div>
         </div>
-        <div class="form-group">
-            <label>Role</label>
+
+        <div class="mb-3">
+            <label class="form-label">Role</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="role"
-                       id="candidat" value="<%= Role.CANDIDAT %>">
-                <label class="form-check-label" for="candidat">
-                    Candidate
-                </label>
+                <input class="form-check-input" type="radio" name="role" id="candidate" value="<%=Role.CANDIDAT%>" required>
+                <label class="form-check-label" for="candidate">Candidate</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="role" id="recruteur" value="<%= Role.RECRUTEUR %>">
-                <label class="form-check-label" for="recruteur">Recruiter</label>
+                <input class="form-check-input" type="radio" name="role" id="recruiter" value="<%=Role.RECRUTEUR%>" required>
+                <label class="form-check-label" for="recruiter">Recruiter</label>
             </div>
-            <div id="roleError" style="color: red;"></div>
+            <div class="invalid-feedback">Please select a role.</div>
         </div>
-        <button type="submit" class="btn btn-primary">Register</button>
-        <br>
-        <a href="login.jsp"><button type="button" class="btn btn-primary">I have account</button></a>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <button type="submit" class="btn btn-primary">Register</button>
+            <a href="login.jsp" class="text-decoration-none">I have an account</a>
+        </div>
     </form>
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById("myForm").addEventListener("submit", function(event) {
-            var radios = document.getElementsByName("role");
-            var selected = false;
-
-            for (var i = 0; i < radios.length; i++) {
-                if (radios[i].checked) {
-                    selected = true;
-                    break;
+    (function () {
+        'use strict';
+        const forms = document.querySelectorAll('.needs-validation');
+        Array.from(forms).forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
                 }
-            }
-
-            if (!selected) {
-                event.preventDefault();
-                document.getElementById("roleError").innerText = "S'il vous plait, selectionnez un role.";
-            }
+                form.classList.add('was-validated');
+            }, false);
         });
-    });
+    })();
 </script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

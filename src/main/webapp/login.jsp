@@ -31,6 +31,8 @@
             <div id="roleError" style="color: red;"></div>
         </div>
         <button type="submit" class="btn btn-primary">Login</button>
+        <a href="register.jsp" class="btn btn-primary">create new account</a>
+
 
         <% if (request.getAttribute("errorMessage") != null) { %>
         <p style="color: red;"><%= request.getAttribute("errorMessage") %></p>

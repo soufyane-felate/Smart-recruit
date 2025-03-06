@@ -38,8 +38,13 @@ public class AddUserServlet extends HttpServlet {
 
             RegisterUserDao userDao = new RegisterUserDao();
             userDao.addUser(user);
+            if (Role.RECRUTEUR.equals(role)) {
+                response.sendRedirect("dashboardRec.jsp");
+            }else
+            {
+                response.sendRedirect("home.jsp");
 
-            response.sendRedirect("home.jsp");
+            }
         } catch (IllegalArgumentException e) {
             // Invalid role
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid role");
