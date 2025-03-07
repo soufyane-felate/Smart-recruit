@@ -2,7 +2,6 @@ package com.controller;
 
 import com.dao.JobOfferDAO;
 import com.model.JobOffer;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,7 +11,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-public class AddOfferServlet extends HttpServlet {
+public class OfferServlet extends HttpServlet {
     JobOfferDAO jobOfferDAO = new JobOfferDAO();
 
     @Override
