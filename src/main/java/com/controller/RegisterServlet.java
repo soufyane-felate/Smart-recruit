@@ -39,7 +39,6 @@ public class RegisterServlet extends HttpServlet {
             user.setRole(role);
 
             RegisterUserDao userDao = new RegisterUserDao();
-            // Sauvegarder l'utilisateur et son rôle dans la session
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             session.setAttribute("role", role.name());

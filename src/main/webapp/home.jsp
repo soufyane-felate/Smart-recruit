@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -6,7 +7,7 @@
     <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .row{
+        .row {
             display: flex;
             flex-direction: column;
             width: 100%;
@@ -14,10 +15,10 @@
             align-items: center;
             gap: 24px;
         }
-        .col-md-4{
+        .col-md-4 {
             width: 600px;
         }
-        .card-body{
+        .card-body {
             display: flex;
             align-items: center;
             flex-direction: column;
@@ -25,23 +26,25 @@
     </style>
 </head>
 <body>
-<h1>Hello I'm home!</h1>
 <header class="bg-primary text-white text-center py-3">
-    <h1>Admin Dashboard</h1>
+    <h1>Dashboard</h1>
 </header>
 
 <div class="container mt-4">
     <h2 class="text-center mb-4">Job Opportunities</h2>
     <div class="row">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Software Engineer</h5>
-                    <p class="card-text">description</p>
-                    <a href="#"><button class="btn btn-primary">postule</button></a>
+        <c:forEach var="offre" items="${emploiList}">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">${offre.titre}</h5>
+                        <p class="card-text">${offre.description}</p>
+                        <p class="card-text">${offre.datePublication}</p>
+                        <button type="button" class="btn btn-primary">Postuler</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </c:forEach>
     </div>
 </div>
 
