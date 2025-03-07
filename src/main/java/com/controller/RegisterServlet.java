@@ -8,6 +8,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -37,6 +39,11 @@ public class RegisterServlet extends HttpServlet {
             user.setRole(role);
 
             RegisterUserDao userDao = new RegisterUserDao();
+            // Sauvegarder l'utilisateur et son rôle dans la session
+            HttpSession session = request.getSession();
+            session.setAttribute("user", user);
+            session.setAttribute("role", role.name());
+
             userDao.addUser(user);
             if (Role.RECRUTEUR.equals(role)) {
                 response.sendRedirect("dashboardRec.jsp");
