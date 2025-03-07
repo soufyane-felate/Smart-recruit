@@ -13,7 +13,6 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-
 @WebServlet("/Login")
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,10 +22,11 @@ public class LoginServlet extends HttpServlet {
 
         LoginDao loginDao = new LoginDao();
         User user = loginDao.authenticateUser(email, password, role);
+
         if (user != null && email.equals(user.getEmail()) && password.equals(user.getMotDePasse())) {
             HttpSession session = request.getSession();
             session.setAttribute("role", user);
-            if (role.equals("CANDIDAT")) {
+            if (role.equals(Role.CANDIDAT)) {
                 response.sendRedirect("home.jsp");
             } else {
                 response.sendRedirect("dashboardRec.jsp");
@@ -37,4 +37,3 @@ public class LoginServlet extends HttpServlet {
         }
     }
 }
-

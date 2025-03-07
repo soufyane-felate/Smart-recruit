@@ -13,5 +13,6 @@
 <body>
 
     <h1>Hello i'm dashboard!</h1>
+    <a href="profile.jsp" >profil</a>
 </body>
 </html>
