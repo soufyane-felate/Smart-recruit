@@ -38,7 +38,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Software Engineer</h5>
                     <p class="card-text">description</p>
-                    <a href="#"><button class="btn btn-primary">postule</button></a>
+                    <a href=""><button class="btn btn-primary">postule</button></a>
                 </div>
             </div>
         </div>

@@ -1,6 +1,18 @@
 package com.model;
 
+import java.time.LocalDate;
+
 public class JobOffer {
+    private String title;
+    private String description;
+    LocalDate date = LocalDate.now();
+
+    public static void setDate(LocalDate date){
+        this.date = date;
+    }
+    public LocalDate getDate(){
+        return date;
+    }
     public String getTitle() {
         return title;
     }
@@ -16,8 +28,4 @@ public class JobOffer {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    private String title;
-    private String description;
-
 }
