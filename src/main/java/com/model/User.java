@@ -2,21 +2,32 @@ package com.model;
 
 public class User {
     private int id;
-    private String email;
+    private String email,nom;
     private String motDePasse;
     private Role role;
 
     public User() {}
 
-    public User(String email, String motDePasse, Role role) {
+    public User(String email,String nom, String motDePasse, Role role) {
         this.email = email;
+        this.nom = nom;
         this.motDePasse = motDePasse;
         this.role = role;
     }
 
-    public User(int id, String email, String motDePasse, Role role) {
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public User(int id, String email, String nom, String motDePasse, Role role) {
         this.id = id;
         this.email = email;
+        this.nom = nom;
+
         this.motDePasse = motDePasse;
         this.role = role;
     }

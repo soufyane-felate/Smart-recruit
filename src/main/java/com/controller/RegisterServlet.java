@@ -15,12 +15,12 @@ import java.sql.SQLException;
 public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        String nom = request.getParameter("nom");
         String email = request.getParameter("email");
         String motDePasse = request.getParameter("password");
         String roleParam = request.getParameter("role");
 
-        if (email == null || email.trim().isEmpty() ||
+        if (nom == null || email == null || email.trim().isEmpty() ||
                 motDePasse == null || motDePasse.trim().isEmpty() ||
                 roleParam == null) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid input");
@@ -32,6 +32,7 @@ public class RegisterServlet extends HttpServlet {
             Role role = Role.valueOf(roleParam.toUpperCase());
 
             User user = new User();
+            user.setNom(nom);
             user.setEmail(email);
             user.setMotDePasse(motDePasse);
             user.setRole(role);
@@ -42,7 +43,7 @@ public class RegisterServlet extends HttpServlet {
                 response.sendRedirect("dashboardRec.jsp");
             }else
             {
-                response.sendRedirect("home.jsp");
+                response.sendRedirect("OfferServlet");
 
             }
         } catch (IllegalArgumentException e) {

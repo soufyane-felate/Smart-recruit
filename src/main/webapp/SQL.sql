@@ -4,7 +4,6 @@ USE SmartRecruit;
 
 CREATE TABLE Utilisateur (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    nom VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     motDePasse VARCHAR(255) NOT NULL,
     role ENUM('Candidat', 'Recruteur') NOT NULL
