@@ -9,7 +9,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
+
 @WebServlet("/OfferServlet")
 public class OfferServlet extends HttpServlet {
     JobOfferDAO jobOfferDAO = new JobOfferDAO();
@@ -34,28 +36,47 @@ public class OfferServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
 
-        try {
-            if ("postuler".equals(action)) {
+        if ("postuler".equals(action)) {
+            try {
                 int idCandidat = Integer.parseInt(req.getParameter("idCandidat"));
                 int idOffreEmploi = Integer.parseInt(req.getParameter("idOffreEmploi"));
-                candidatureDAO.addCandidature(idCandidat, idOffreEmploi);
-                try {
-                    jobOfferDAO.addCandidature(idCandidat, idOffreEmploi);
-                    resp.sendRedirect("listCondidatur.jsp");
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
+
+                System.out.println("Trying to add candidature with:");
+                System.out.println("idCandidat: " + idCandidat);
+                System.out.println("idOffreEmploi: " + idOffreEmploi);
+
+                JobOffer offer = jobOfferDAO.getOfferById(idOffreEmploi);
+                if (offer == null) {
+                    System.out.println("Job offer with ID " + idOffreEmploi + " does not exist!");
+                    req.setAttribute("errorMessage", "L'offre d'emploi sélectionnée n'existe pas.");
+                    doGet(req, resp);
+                    return;
                 }
-            } else if ("updateStatus".equals(action)) {
-                int candidatureId = Integer.parseInt(req.getParameter("idCandidature"));
-                String newStatus = req.getParameter("status");
-                candidatureDAO.updateStatus(candidatureId, newStatus);
+
+                // Create a new candidature
+                Candidature candidature = new Candidature();
+                candidature.setIdCandidat(idCandidat);
+                candidature.setIdOffreEmploi(idOffreEmploi);
+                candidature.setDateCandidature(LocalDate.now());
+                candidature.setStatut("En attente");
+
+                candidatureDAO.addCandidature(candidature);
+
+               // resp.sendRedirect("listeCandidature.jsp");
+
+                req.setAttribute("successMessage", "Votre candidature a été envoyée avec succès !");
+                doGet(req, resp);
+
+
+            } catch (SQLException e) {
+                System.err.println("SQL Exception: " + e.getMessage());
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            } catch (Exception e) {
+                System.err.println("General Exception: " + e.getMessage());
+                e.printStackTrace();
+                throw new RuntimeException(e);
             }
-
-            resp.sendRedirect("home.jsp");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
-
     }
-
 }
